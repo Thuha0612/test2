@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/vocab.css' %}" />
+
+    <title>Vocabulary</title>
+  </head>
+  <body>
+    <div class="background">
+      <!-- Playlist -->
+      <div class="music_list">
+        <div class="ten">
+          <h3>Music lists</h3>
+        </div>
+
+        <div class="list">
+          {% for music in musics %}
+            <!-- onclick="getExample({{ forloop.counter0 }})" -->
+            <div class="song" id="song{{ forloop.counter0 }}">
+              <div class="info">
+                <div class="song-thumbnail">
+                  <img src="/media/{{ music.cover_image }}" alt="" />
+                </div>
+                <div class="titles" style="height: auto;">
+                  <h4 id="title{{ forloop.counter0 }}">{{ music.title }}</h4>
+                  <p id="artist{{ forloop.counter0 }}">{{ music.artist }}</p>
+                  {% comment %} <p id="example{{ forloop.counter0 }}">{{ music.example }}</p> {% endcomment %}
+                </div>
+              </div>
+            </div>
+            <hr />
+          {% endfor %}
+        </div>
+      </div>
+      <div class="box-example">
+
+        <div class="centerContent">
+        <p class="centerContent">No data found, please select a song</p>
+      </div>
+      <!-- Example -->
+      <div class="example" id="exampleContent">
+        {% comment %} <h2 class="example-title">Example</h2> {% endcomment %}
+        <div class="example-content">
+          <div class="titre">
+            <p class="exampletxt" style="color: aliceblue; padding-left: 30px;"></p>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+
+      <!-- switch button{% endcomment -->
+      <div>
+        <a class="main-button" href="/"><i class="fa-solid fa-house"></i></a>
+        <a class="song-button" href="/song"><i class="fa-solid fa-music"></i></a>
+      </div>
+    </div>
+    {% comment %} <script>
+      function getExample(index) {
+        var centerContent = document.getElementsByClassName('centerContent')[0]
+        var exampleContent = document.getElementById('exampleContent')
+        var exampleText = document.querySelector('.exampletxt')
+      
+        exampleContent.style.display = 'block'
+        exampleText.textContent = musics[index].example
+        centerContent.style.display = 'none'
+      }
+    </script> {% endcomment %}
+    <script></script>
+
+    <script src="{% static 'js/vocab.js' %}"></script>
+  </body>
+</html>
